@@ -12,7 +12,7 @@
             <Font size="23.0" />
          </font>
       </Button>
-      <Label fx:id="txtLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="171.0" layoutY="35.0" prefHeight="92.0" prefWidth="258.0" textFill="#2d00b5" underline="true">
+      <Label fx:id="txtLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="171.0" layoutY="35.0" prefHeight="92.0" prefWidth="258.0" textFill="#b2009a" underline="true">
          <font>
             <Font name="System Bold" size="34.0" />
          </font>
