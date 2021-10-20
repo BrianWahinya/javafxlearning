@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+   <children>
+      <Button fx:id="btnNext" layoutX="139.0" layoutY="288.0" mnemonicParsing="false" onAction="#actionOnNext" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #008f1d;" text="Next" textFill="WHITE" />
+      <Button fx:id="btnCancel" layoutX="373.0" layoutY="288.0" mnemonicParsing="false" onAction="#actionOnCancel" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #8f0e00;" text="Cancel" textFill="WHITE" />
+      <Text fx:id="txtBtnClicked" layoutX="226.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No button clicked" textAlignment="CENTER" wrappingWidth="147.13671875" />
+   </children>
+</AnchorPane>
