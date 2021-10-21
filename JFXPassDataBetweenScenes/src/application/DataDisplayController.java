@@ -17,7 +17,11 @@ public class DataDisplayController {
 	@FXML Button btnBack;
 	
 	public void actionGoBack(ActionEvent event) throws IOException {
-		Parent mainStage = FXMLLoader.load(getClass().getResource("Main.fxml"));
+		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("Main.fxml"));
+		
+		Parent mainStage = loader.load();
 		Scene mainScene = new Scene(mainStage);
 		
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();

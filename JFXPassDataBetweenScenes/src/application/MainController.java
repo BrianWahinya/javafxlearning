@@ -20,7 +20,7 @@ public class MainController {
 	@FXML TextField txtFdId;
 	@FXML TextField txtFdEmail;
 	@FXML DatePicker datePickerDob;
-	
+
 	public void actionOnSubmit(ActionEvent event) throws IOException {
 		Parent mainStage = FXMLLoader.load(getClass().getResource("DataDisplay.fxml"));
 		Scene mainScene = new Scene(mainStage);
