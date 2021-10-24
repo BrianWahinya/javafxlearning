@@ -28,10 +28,12 @@ public class LoginController {
 	@FXML Button btnBackToMain;
 	@FXML Label lblLoginErrors;
 	
+	// Register Button Action
 	public void actionGoToRegister(ActionEvent event) {
 		lblLoginErrors.setText("Btn Register clicked");
 	}
 
+	// Back Button Action
 	public void actionBackToMain(ActionEvent event) throws IOException {
 		lblLoginErrors.setText("Btn Back clicked");
 		Parent mainStage = FXMLLoader.load(getClass().getResource("Main.fxml"));
@@ -42,24 +44,28 @@ public class LoginController {
 		window.show();
 	}
 	
+	// Login Button action
 	public void actionLogin(ActionEvent event) throws SQLException {
-		lblLoginErrors.setText("Btn Login clicked");
+		// lblLoginErrors.setText("Btn Login clicked");
 		Window owner = txtFieldUsernameOrEmail.getScene().getWindow();
 		
+		// Throw and alert error in case any input box is empty
 		if(txtFieldUsernameOrEmail.getText().isEmpty() || pwdField.getText().isEmpty()) {
 			showAlert(Alert.AlertType.ERROR, owner, "Please enter all fields", "Form error");
 			return;
 		}
 		
+		// Retrieve the user input text
 		String uNameEmail = txtFieldUsernameOrEmail.getText();
 		String pwd = pwdField.getText();
 		
 		DBObj dbObj = new DBObj();
 		boolean flag = dbObj.validateUser(uNameEmail, pwd);
 		if(!flag) {
+			// Throw and alert error in case any input box is empty
 			String error = "Please enter correct username/email or password";
-			infoBox(error, null, "Failed");
 			lblLoginErrors.setText(error);
+			infoBox(error, null, "Failed");
 		}else {
 			infoBox("Login successful!", null, "Success");
 			try {
@@ -90,6 +96,7 @@ public class LoginController {
 		alert.showAndWait();
 	}
 	
+	// Alert in case of errors
 	public static void showAlert(Alert.AlertType alertType, Window owner, String msg, String title) {
 		Alert alert = new Alert(alertType);
 		alert.setContentText(msg);
@@ -99,6 +106,7 @@ public class LoginController {
 		alert.show();
 	}
 	
+	// Default Focus will be to the anchorPane and not textField
 	public void resetFocus() {
 		anchorPane.requestFocus();
 	}
