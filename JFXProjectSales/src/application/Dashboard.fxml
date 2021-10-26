@@ -6,41 +6,22 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DashboardController">
    <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="600.0">
-         <children>
-            <Label layoutX="244.0" layoutY="14.0" text="Dashboard">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <TableView fx:id="tbView" layoutX="9.0" layoutY="86.0" prefHeight="345.0" prefWidth="583.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
-              </columns>
-            </TableView>
-            <Label fx:id="lblRecordsNo" layoutX="14.0" layoutY="58.0" text="Number of records:" />
-         </children>
-      </AnchorPane>
+      <BorderPane fx:id="dashBorderPane" />
    </center>
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem fx:id="mnItemClose" mnemonicParsing="false" onAction="#actionClose" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -84,10 +65,10 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
          <children>
-            <Button fx:id="btnUsers" mnemonicParsing="false" onAction="#actionGetAllUsers" prefHeight="25.0" prefWidth="90.0" text="Users" />
-            <Button fx:id="btnLevels" mnemonicParsing="false" onAction="#actionGetAllLevels" prefHeight="25.0" prefWidth="90.0" text="Levels" />
-            <Button fx:id="btnSubjects" mnemonicParsing="false" onAction="#actionGetAllSubjects" prefHeight="25.0" prefWidth="90.0" text="Subjects" />
-            <Button fx:id="btnBooks" mnemonicParsing="false" onAction="#actionGetAllBooks" prefHeight="25.0" prefWidth="90.0" text="Books" />
+            <Button fx:id="btnUsers" mnemonicParsing="false" onAction="#actionLoadUsersDashboard" prefHeight="25.0" prefWidth="90.0" text="Users" />
+            <Button fx:id="btnLevels" mnemonicParsing="false" onAction="#actionLoadLevelsDashboard" prefHeight="25.0" prefWidth="90.0" text="Levels" />
+            <Button fx:id="btnSubjects" mnemonicParsing="false" onAction="#actionLoadSubjectsDashboard" prefHeight="25.0" prefWidth="90.0" text="Subjects" />
+            <Button fx:id="btnBooks" mnemonicParsing="false" onAction="#actionLoadBooksDashboard" prefHeight="25.0" prefWidth="90.0" text="Books" />
          </children>
       </VBox>
    </left>

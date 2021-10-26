@@ -12,6 +12,7 @@ public class DBObj {
 	private static final String DB_PASSWORD = "";
 	private static final String CSTMT_LoginUser = "{call LoginUser (?, ?)}";	
 		
+	// Login validate user
 	public boolean validateUser(String username, String password) throws SQLException {
 		// CallableStatement cstmt = null;
 		try {
@@ -30,5 +31,17 @@ public class DBObj {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	//Establish Cconnection
+	public Connection getConnection() throws SQLException {
+		try {
+			//Establish connection
+			Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+			return conn;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
