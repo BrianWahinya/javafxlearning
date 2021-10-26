@@ -27,92 +27,20 @@ public class DashboardController {
 	@FXML Button btnBooks;
 	@FXML Button btnLogout;
 	@FXML MenuItem mnItemClose;
-//	@FXML TableView<Tables> tables;
-//	@FXML TableColumn<Tables, String> colUsername;
-//	@FXML TableView<Tables, String> colEmail;
 	
 	Scene fxmlFile;
 	Parent root;
 	Stage window;
 	
+	// Show logged in user
 	public void setUserName(String username) {
 		lblUsername.setText(username);
 	}
 	
-	// Users
-	public void actionLoadUsersDashboard(ActionEvent event) {
-		FxmlLoader loader = new FxmlLoader();
-		Pane view = loader.getPage("Users");
-		dashBorderPane.setCenter(view);		
-	}
-	
-	public void actionAddUser(ActionEvent event) throws IOException {
-		openModalWindow("UserAdd.fxml", "Add User/s");		
-	}
-	
-	// Levels
-	public void actionLoadLevelsDashboard(ActionEvent event) {
-		FxmlLoader loader = new FxmlLoader();
-		Pane view = loader.getPage("Levels");
-		dashBorderPane.setCenter(view);		
-	}
-	
-	public void actionAddLevel(ActionEvent event) throws IOException {
-		openModalWindow("LevelAdd.fxml", "Add Level");		
-	}
-	
-	public void actionGetAllLevels(ActionEvent event) {
-		
-	}
-	
-	// Subjects
-	public void actionLoadSubjectsDashboard(ActionEvent event) {
-		FxmlLoader loader = new FxmlLoader();
-		Pane view = loader.getPage("Subjects");
-		dashBorderPane.setCenter(view);		
-	}
-	
-	public void actionAddSubject(ActionEvent event) throws IOException {
-		openModalWindow("SubjectAdd.fxml", "Add Subject");		
-	}
-	
-	public void actionGetAllSubjects(ActionEvent event) {
-		
-	}
-	
-	
-	// Books
-	public void actionLoadBooksDashboard(ActionEvent event) {
-		FxmlLoader loader = new FxmlLoader();
-		Pane view = loader.getPage("Books");
-		dashBorderPane.setCenter(view);		
-	}
-	
-	public void actionAddBook(ActionEvent event) throws IOException {
-		openModalWindow("BookAdd.fxml", "Add Book");		
-	}
-	
-	public void actionGetAllBooks(ActionEvent event) {
-		
-	}
-	
-	// Logout
-	public void actionLogout(ActionEvent event) {
-		
-	}
-	
-	// Close button
-	public void actionClose(ActionEvent event) throws IOException {
-		Parent mainStage = FXMLLoader.load(getClass().getResource("Main.fxml"));
-		Scene mainScene = new Scene(mainStage);
-		
-		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		window.setScene(mainScene);
-		window.show();
-	}
-	
-	// Modal method
-	private void openModalWindow(String resource, String title) throws IOException {
+	/**
+	 * Dashboard Modal method
+	 */
+	public void openModalWindow(String resource, String title) throws IOException {
 		root = FXMLLoader.load(getClass().getResource(resource));
 		fxmlFile = new Scene(root);
 		window = new Stage();
@@ -131,7 +59,59 @@ public class DashboardController {
 		*/
 		window.showAndWait();
 	}
+		
+	/**
+	 * Users Dashboard
+	 */
+	public void actionLoadUsersDashboard(ActionEvent event) {
+		FxmlLoader loader = new FxmlLoader();
+		Pane view = loader.getPage("Users");
+		dashBorderPane.setCenter(view);		
+	}	
 	
+	/**
+	 * Levels Dashboard
+	 */
+	public void actionLoadLevelsDashboard(ActionEvent event) {
+		FxmlLoader loader = new FxmlLoader();
+		Pane view = loader.getPage("Levels");
+		dashBorderPane.setCenter(view);		
+	}
+		
+	/**
+	 * Subjects Dashboard
+	 */
+	public void actionLoadSubjectsDashboard(ActionEvent event) {
+		FxmlLoader loader = new FxmlLoader();
+		Pane view = loader.getPage("Subjects");
+		dashBorderPane.setCenter(view);		
+	}
 	
+	/**
+	 * Books Dashboard
+	 */
+	public void actionLoadBooksDashboard(ActionEvent event) {
+		FxmlLoader loader = new FxmlLoader();
+		Pane view = loader.getPage("Books");
+		dashBorderPane.setCenter(view);		
+	}
+	
+	/**
+	 * Dashboard Exit methods
+	 */
+	// Logout
+	public void actionLogout(ActionEvent event) {
+		
+	}
+	
+	// Close button
+	public void actionClose(ActionEvent event) throws IOException {
+		Parent mainStage = FXMLLoader.load(getClass().getResource("Main.fxml"));
+		Scene mainScene = new Scene(mainStage);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		window.setScene(mainScene);
+		window.show();
+	}	
 	
 }

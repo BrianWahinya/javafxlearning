@@ -6,16 +6,16 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f7fcff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DashboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="620.0" style="-fx-background-color: #f7fcff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BooksControlller">
    <children>
-      <Button fx:id="btnAddBooks" layoutX="505.0" layoutY="14.0" mnemonicParsing="false" onAction="#actionAddBook" text="Add Book" />
-      <TableView fx:id="tableBooks" layoutX="4.0" layoutY="49.0" prefHeight="345.0" prefWidth="592.0">
+      <Button fx:id="btnAddBooks" layoutX="537.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionAddBook" text="Add Book" />
+      <TableView fx:id="tableBooks" layoutX="4.0" layoutY="49.0" prefHeight="345.0" prefWidth="612.0">
          <columns>
-            <TableColumn prefWidth="229.0" text="Name" />
-            <TableColumn prefWidth="51.0" text="Type" />
-            <TableColumn minWidth="8.0" prefWidth="115.0" text="Subject" />
-            <TableColumn minWidth="8.0" prefWidth="71.0" text="Level" />
-            <TableColumn minWidth="8.0" prefWidth="125.0" text="Actions" />
+            <TableColumn fx:id="colBookName" prefWidth="229.0" text="Name" />
+            <TableColumn fx:id="colBookType" prefWidth="51.0" text="Type" />
+            <TableColumn fx:id="colBookSubject" minWidth="8.0" prefWidth="115.0" text="Subject" />
+            <TableColumn fx:id="colBookLevel" minWidth="8.0" prefWidth="71.0" text="Level" />
+            <TableColumn fx:id="colBookTableActions" minWidth="8.0" prefWidth="125.0" text="Actions" />
          </columns>
       </TableView>
       <Label layoutX="14.0" layoutY="20.0" text="Available Books: " />
