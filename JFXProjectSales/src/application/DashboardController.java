@@ -17,10 +17,12 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 public class DashboardController {
 	@FXML private BorderPane dashBorderPane;
 	@FXML private Label lblUsername;
+	@FXML AnchorPane anchorPaneModal;
 	@FXML Button btnUsers;
 	@FXML Button btnLevels;
 	@FXML Button btnSubjects;
@@ -41,23 +43,38 @@ public class DashboardController {
 	 * Dashboard Modal method
 	 */
 	public void openModalWindow(String resource, String title) throws IOException {
-		root = FXMLLoader.load(getClass().getResource(resource));
-		fxmlFile = new Scene(root);
-		window = new Stage();
-		window.setScene(fxmlFile);
-		window.initModality(Modality.APPLICATION_MODAL);
-		window.setAlwaysOnTop(true);
-		window.setIconified(false);
-		window.initStyle(StageStyle.UTILITY);
-		window.setTitle(title);
-		/*
-		window.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
-			if(!isNowFocused) {
-				window.hide();
-			}
-		});
-		*/
-		window.showAndWait();
+		
+		FXMLLoader modalLoader = new FXMLLoader(getClass().getResource(resource));
+		Parent modal = modalLoader.load();
+		
+		Stage modalStage = new Stage();
+		modalStage.setScene(new Scene(modal));
+		
+		switch(resource) {
+			case "UserAdd.fxml":
+				UsersController usersController = (UsersController) modalLoader.getController();
+				usersController.resetFocus();
+				break;
+			case "LevelAdd.fxml":
+				LevelsController levelsController = (LevelsController) modalLoader.getController();
+				levelsController.resetFocus();
+				break;
+			case "SubjectAdd.fxml":
+				SubjectsController subjectsController = (SubjectsController) modalLoader.getController();
+				subjectsController.resetFocus();
+				break;
+			case "BookAdd.fxml":
+				BooksController booksController = (BooksController) modalLoader.getController();
+				booksController.resetFocus();
+				break;
+		}
+		
+		modalStage.initModality(Modality.APPLICATION_MODAL);
+		modalStage.setAlwaysOnTop(true);
+		modalStage.setIconified(false);
+		modalStage.initStyle(StageStyle.UTILITY);
+		modalStage.setTitle(title);
+		modalStage.showAndWait();
 	}
 		
 	/**
@@ -75,7 +92,7 @@ public class DashboardController {
 	public void actionLoadLevelsDashboard(ActionEvent event) {
 		FxmlLoader loader = new FxmlLoader();
 		Pane view = loader.getPage("Levels");
-		dashBorderPane.setCenter(view);		
+		dashBorderPane.setCenter(view);
 	}
 		
 	/**
@@ -93,7 +110,7 @@ public class DashboardController {
 	public void actionLoadBooksDashboard(ActionEvent event) {
 		FxmlLoader loader = new FxmlLoader();
 		Pane view = loader.getPage("Books");
-		dashBorderPane.setCenter(view);		
+		dashBorderPane.setCenter(view);
 	}
 	
 	/**

@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="620.0" style="-fx-background-color: #f7fcff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LevelsControlller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="620.0" style="-fx-background-color: #f7fcff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LevelsController">
    <children>
       <Button fx:id="btnAddLevel" layoutX="537.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionAddLevel" text="Add Level" />
       <TableView fx:id="tableLevels" layoutX="4.0" layoutY="49.0" prefHeight="345.0" prefWidth="612.0">
