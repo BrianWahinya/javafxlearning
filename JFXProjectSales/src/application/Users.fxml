@@ -19,5 +19,6 @@
       <Button fx:id="btnAddUsers" layoutX="541.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionAddUser" text="Add User" />
       <Label layoutX="14.0" layoutY="20.0" text="Available Users: " />
       <Label fx:id="lblUsersAvailable" layoutX="100.0" layoutY="20.0" text="     " underline="true" />
+      <Button fx:id="btnLoadUsers" layoutX="456.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionGetAllUsers" text="Load Users" />
    </children>
 </AnchorPane>

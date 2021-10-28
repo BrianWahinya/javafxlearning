@@ -1,6 +1,7 @@
 package application;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +18,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 
 public class DashboardController {
 	@FXML private BorderPane dashBorderPane;
@@ -42,7 +42,7 @@ public class DashboardController {
 	/**
 	 * Dashboard Modal method
 	 */
-	public void openModalWindow(String resource, String title) throws IOException {
+	public void openModalWindow(String resource, String title) throws IOException{
 		
 		FXMLLoader modalLoader = new FXMLLoader(getClass().getResource(resource));
 		Parent modal = modalLoader.load();
@@ -75,15 +75,17 @@ public class DashboardController {
 		modalStage.initStyle(StageStyle.UTILITY);
 		modalStage.setTitle(title);
 		modalStage.showAndWait();
+		
 	}
 		
 	/**
 	 * Users Dashboard
+	 * @throws SQLException 
 	 */
-	public void actionLoadUsersDashboard(ActionEvent event) {
+	public void actionLoadUsersDashboard(ActionEvent event) throws SQLException{
 		FxmlLoader loader = new FxmlLoader();
 		Pane view = loader.getPage("Users");
-		dashBorderPane.setCenter(view);		
+		dashBorderPane.setCenter(view);	
 	}	
 	
 	/**
