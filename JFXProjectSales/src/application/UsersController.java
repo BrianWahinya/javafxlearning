@@ -5,13 +5,19 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -20,18 +26,24 @@ import javafx.scene.layout.AnchorPane;
 
 public class UsersController{
 	@FXML AnchorPane anchorPaneModal;
+	@FXML AnchorPane anchorPaneUsers;
 	@FXML TableView<Users> tableUsers;
 	@FXML TableColumn<Users, String> colUsername;
 	@FXML TableColumn<Users, String> colEmail;
 	@FXML TableColumn<Users, String> colAccessLevel;
-	@FXML TableColumn<?, String> colUserTableActions;
+	@FXML TableColumn<Users, CheckBox> colUserTableActions;
+	@FXML CheckBox checkBox;
 	@FXML Button btnAddUsersModal;
 	@FXML Button btnAddUsers;
 	@FXML Button btnLoadUsers;
+	@FXML Button btnDeleteUsers;
 	@FXML Label lblUsersAvailable;
 	@FXML TextField txtFieldUsername;
 	@FXML TextField txtFieldEmail;
 	@FXML Label lblError;
+	@FXML Label checkedBoxes;
+	
+	List<String> ckbx = new ArrayList<>();
 	
 	DBObj dbObj;
 	
@@ -55,6 +67,7 @@ public class UsersController{
 		colUsername.setCellValueFactory(new PropertyValueFactory<Users, String>("username"));
 		colEmail.setCellValueFactory(new PropertyValueFactory<Users, String>("email"));
 		colAccessLevel.setCellValueFactory(new PropertyValueFactory<Users, String>("useraccess"));
+		colUserTableActions.setCellValueFactory(new PropertyValueFactory<Users, CheckBox>("checkbox"));
 		tableUsers.setItems(list);
 	}
 	
@@ -72,7 +85,28 @@ public class UsersController{
 			int countResult = 0;
 			while(result.next()) {
 				countResult++;
-				users = new Users(result.getString("username"), result.getString("email"), result.getString("useraccess"));
+				String uname = result.getString("username");
+				CheckBox checkbox = new CheckBox();
+				checkbox.setId(uname);
+				// create a event handler
+	            EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+	  
+	                public void handle(ActionEvent e)
+	                {
+	                    if (checkbox.isSelected()) {
+	                    	ckbx.add(uname);
+	                    	String str = ckbx.toString();
+	                    	checkedBoxes.setText(str);
+	                    } else {
+	                    	ckbx.remove(new String(uname));
+		                    String stri = ckbx.toString();
+	                    	checkedBoxes.setText(stri);
+	                    }
+	                }
+	  
+	            };
+	            checkbox.setOnAction(event);
+				users = new Users(uname, result.getString("email"), result.getString("useraccess"), checkbox);
 				userList.add(users);
 			}
 			lblUsersAvailable.setText(String.valueOf(countResult));
@@ -109,6 +143,14 @@ public class UsersController{
 			CustomErrors customError = new CustomErrors();
 			String error = customError.EmptyFields();
 			lblError.setText(error);
+		}
+	}
+	
+	// Delete users (DELETE)
+	public void actionDeleteUsers(ActionEvent event) {
+		System.out.println("To be deleted: " + ckbx);
+		for (String i : ckbx) {
+			  System.out.println(i);
 		}
 	}
 
