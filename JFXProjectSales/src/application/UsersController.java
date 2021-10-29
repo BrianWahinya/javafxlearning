@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
@@ -28,6 +29,9 @@ public class UsersController{
 	@FXML Button btnAddUsers;
 	@FXML Button btnLoadUsers;
 	@FXML Label lblUsersAvailable;
+	@FXML TextField txtFieldUsername;
+	@FXML TextField txtFieldEmail;
+	@FXML Label lblError;
 	
 	DBObj dbObj;
 	
@@ -43,6 +47,10 @@ public class UsersController{
 	}
 	
 	public void actionGetAllUsers(ActionEvent event) throws SQLException {
+		generateAllUsers();
+	}
+	
+	public void generateAllUsers() throws SQLException {
 		ObservableList<Users> list = getUserList();
 		colUsername.setCellValueFactory(new PropertyValueFactory<Users, String>("username"));
 		colEmail.setCellValueFactory(new PropertyValueFactory<Users, String>("email"));
@@ -50,7 +58,7 @@ public class UsersController{
 		tableUsers.setItems(list);
 	}
 	
-	public ObservableList<Users> getUserList() throws SQLException{
+	private ObservableList<Users> getUserList() throws SQLException{
 		ObservableList<Users> userList = FXCollections.observableArrayList();
 		dbObj = new DBObj();
 		try {
@@ -72,6 +80,36 @@ public class UsersController{
 			e.printStackTrace();
 		}
 		return userList;
+	}
+	
+	// Register users (CREATE)
+	public void actionRegisterUser(ActionEvent event) throws SQLException {
+		String username = txtFieldUsername.getText();
+		String email = txtFieldEmail.getText();
+		if(!username.isEmpty() && !email.isEmpty()) {
+			dbObj = new DBObj();
+			try {
+				//Establish connection
+				Connection dbconn = dbObj.getConnection();
+				String cstmt_registerUser = "{call RegisterUser(?, ?)}";
+				CallableStatement cstmt = dbconn.prepareCall(cstmt_registerUser);
+				cstmt.setString(1, username);
+				cstmt.setString(2, email);
+				cstmt.execute();
+				ResultSet result = cstmt.getResultSet();
+				while(result.next()) {
+					lblError.setText(result.getString("message"));
+				}
+				txtFieldUsername.setText("");
+				txtFieldEmail.setText("");
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}else {
+			CustomErrors customError = new CustomErrors();
+			String error = customError.EmptyFields();
+			lblError.setText(error);
+		}
 	}
 
 }

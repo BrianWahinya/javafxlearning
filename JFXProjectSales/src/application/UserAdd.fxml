@@ -11,9 +11,9 @@
 <AnchorPane fx:id="anchorPaneModal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #e5f0f8;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.UsersController">
    <children>
       <Pane prefHeight="7.0" prefWidth="600.0" style="-fx-background-color: #609c88;" />
-      <TextField layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="232.0" promptText="Username" />
-      <TextField layoutX="254.0" layoutY="14.0" prefHeight="25.0" prefWidth="232.0" promptText="Email" />
-      <Button fx:id="btnAddUsersModal" layoutX="494.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #609c88;" text="Add" textFill="WHITE" />
+      <TextField fx:id="txtFieldUsername" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="232.0" promptText="Username" />
+      <TextField fx:id="txtFieldEmail" layoutX="254.0" layoutY="14.0" prefHeight="25.0" prefWidth="232.0" promptText="Email" />
+      <Button fx:id="btnAddUsersModal" layoutX="494.0" layoutY="14.0" mnemonicParsing="false" onAction="#actionRegisterUser" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #609c88;" text="Add" textFill="WHITE" />
       <Label layoutX="14.0" layoutY="50.0" text="or add multiple users from excel/csv file" />
       <TableView fx:id="usersTableModal" layoutX="14.0" layoutY="76.0" prefHeight="311.0" prefWidth="577.0">
         <columns>
@@ -23,5 +23,6 @@
             <TableColumn prefWidth="215.0" text="Info" />
         </columns>
       </TableView>
+      <Label fx:id="lblError" layoutX="289.0" layoutY="50.0" text="Error" textFill="#e82020" />
    </children>
 </AnchorPane>

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 public class DashboardController {
 	@FXML private BorderPane dashBorderPane;
@@ -73,9 +75,22 @@ public class DashboardController {
 		modalStage.setAlwaysOnTop(true);
 		modalStage.setIconified(false);
 		modalStage.initStyle(StageStyle.UTILITY);
-		modalStage.setTitle(title);
-		modalStage.showAndWait();
-		
+		modalStage.setTitle(title);		
+//		modalStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+//	          public void handle(WindowEvent we) {
+//	              System.out.println("Stage is closing");
+//	              
+//	              modalStage.close();
+//	              try {
+//	            	  UsersController usersController = (UsersController) modalLoader.getController();
+//	            	  usersController.generateAllUsers();
+//					} catch (SQLException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//	          }
+//	      });
+		modalStage.showAndWait();		
 	}
 		
 	/**
