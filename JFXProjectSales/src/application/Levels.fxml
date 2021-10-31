@@ -18,5 +18,6 @@
       <Label layoutX="14.0" layoutY="20.0" text="Available Levels: " />
       <Label fx:id="lblLevelsAvailable" layoutX="103.0" layoutY="20.0" text="     " underline="true" />
       <Button fx:id="btnLoadLevels" layoutX="451.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionGetAllLevels" text="Load Levels" />
+      <Button fx:id="btnDeleteLevels" layoutX="354.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionDeleteLevels" text="Delete Levels" textFill="#d71c1c" />
    </children>
 </AnchorPane>

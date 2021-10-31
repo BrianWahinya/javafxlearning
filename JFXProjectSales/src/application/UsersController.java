@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -17,7 +16,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -41,7 +39,6 @@ public class UsersController{
 	@FXML TextField txtFieldUsername;
 	@FXML TextField txtFieldEmail;
 	@FXML Label lblError;
-//	@FXML Label checkedBoxes;
 	
 	List<String> checkedBoxes = new ArrayList<>();
 	
@@ -144,14 +141,14 @@ public class UsersController{
 	
 	// Delete users (DELETE)
 	public void actionDeleteUsers(ActionEvent event) {
-		System.out.println("To be deleted: " + checkedBoxes);
+		// System.out.println("To be deleted: " + checkedBoxes);
 		List<String> deleteMessages = new ArrayList<>();
 		dbObj = new DBObj();
 		try {
 			//Establish connection
 			Connection dbconn = dbObj.getConnection();
 			for (String i : checkedBoxes) {
-				  System.out.println(i);
+				  // System.out.println(i);
 				  String cstmt_deleteUser = "{call DeleteUser(?)}";
 				  CallableStatement cstmt = dbconn.prepareCall(cstmt_deleteUser);
 				  cstmt.setString(1, i);
@@ -161,7 +158,7 @@ public class UsersController{
 					  deleteMessages.add(result.getString("message"));
 				  }
 			}
-			System.out.println("Deleted messages: " + deleteMessages);
+			// System.out.println("Deleted messages: " + deleteMessages);
 			generateAllUsers();
 		}catch(SQLException e) {
 			e.printStackTrace();

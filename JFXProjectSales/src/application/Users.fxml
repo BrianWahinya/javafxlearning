@@ -21,6 +21,5 @@
       <Label fx:id="lblUsersAvailable" layoutX="100.0" layoutY="20.0" text="     " underline="true" />
       <Button fx:id="btnLoadUsers" layoutX="456.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionGetAllUsers" text="Load Users" textFill="#076815" />
       <Button fx:id="btnDeleteUsers" layoutX="363.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionDeleteUsers" text="Delete Users" textFill="#d71c1c" />
-      <Label fx:id="checkedBoxes" layoutX="212.0" layoutY="20.0" text="Label" />
    </children>
 </AnchorPane>

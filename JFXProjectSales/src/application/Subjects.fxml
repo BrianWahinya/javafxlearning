@@ -18,5 +18,6 @@
       <Label layoutX="14.0" layoutY="20.0" text="Available Subjects: " />
       <Label fx:id="lblSubjectsAvailable" layoutX="116.0" layoutY="20.0" text="     " underline="true" />
       <Button fx:id="btnLoadSubjects" layoutX="424.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionGetAllSubjects" text="Load Subjects" />
+      <Button fx:id="btnDeleteSubjects" layoutX="316.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionDeleteSubjects" text="Delete Subjects" textFill="#d71c1c" />
    </children>
 </AnchorPane>
