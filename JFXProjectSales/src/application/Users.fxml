@@ -16,7 +16,7 @@
             <TableColumn fx:id="colUserTableActions" minWidth="8.0" prefWidth="125.0" text="Actions" />
         </columns>
       </TableView>
-      <Button fx:id="btnAddUsers" layoutX="541.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionAddUser" text="Add User" textFill="#09429e" />
+      <Button fx:id="btnAddUsers" layoutX="541.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionAddUserModalShow" text="Add User" textFill="#09429e" />
       <Label layoutX="14.0" layoutY="20.0" text="Available Users: " />
       <Label fx:id="lblUsersAvailable" layoutX="100.0" layoutY="20.0" text="     " underline="true" />
       <Button fx:id="btnLoadUsers" layoutX="456.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionGetAllUsers" text="Load Users" textFill="#076815" />

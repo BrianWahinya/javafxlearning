@@ -12,7 +12,7 @@
    <children>
       <Pane prefHeight="7.0" prefWidth="600.0" style="-fx-background-color: #609c88;" />
       <TextField fx:id="txtFieldBookName" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="232.0" promptText="Book name" />
-      <Button fx:id="btnAddFile" layoutX="494.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #609c88;" text="Add" textFill="WHITE" />
+      <Button fx:id="btnAddBooks" layoutX="494.0" layoutY="14.0" mnemonicParsing="false" onAction="#actionAddBook" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #609c88;" text="Add" textFill="WHITE" />
       <Label layoutX="14.0" layoutY="192.0" text="or add multiple users from excel/csv file" />
       <TableView layoutX="14.0" layoutY="223.0" prefHeight="164.0" prefWidth="577.0">
         <columns>
@@ -21,9 +21,10 @@
             <TableColumn prefWidth="215.0" text="Info" />
         </columns>
       </TableView>
-      <TextField fx:id="txtFieldDescription" layoutX="14.0" layoutY="47.0" prefHeight="25.0" prefWidth="232.0" promptText="Description" />
+      <TextField fx:id="txtFieldBookDescription" layoutX="14.0" layoutY="47.0" prefHeight="25.0" prefWidth="232.0" promptText="Description" />
       <TextField fx:id="txtFieldBookSubject" layoutX="14.0" layoutY="83.0" prefHeight="25.0" prefWidth="232.0" promptText="Subject name" />
       <TextField fx:id="txtFieldBookLevel" layoutX="14.0" layoutY="114.0" prefHeight="25.0" prefWidth="232.0" promptText="Level name" />
       <TextField fx:id="txtFieldBookFile" layoutX="14.0" layoutY="154.0" prefHeight="25.0" prefWidth="232.0" promptText="Select file" />
+      <Label fx:id="lblError" layoutX="300.0" layoutY="192.0" text="Error" textFill="#e82020" />
    </children>
 </AnchorPane>

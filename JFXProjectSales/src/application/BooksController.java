@@ -18,6 +18,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
@@ -34,6 +35,12 @@ public class BooksController {
 	@FXML Button btnLoadBooks;
 	@FXML Button btnDeleteBooks;
 	@FXML Label lblBooksAvailable;
+	@FXML TextField txtFieldBookName;
+	@FXML TextField txtFieldBookLevel;
+	@FXML TextField txtFieldBookSubject;
+	@FXML TextField txtFieldBookDescription;
+	@FXML TextField txtFieldBookFile;
+	@FXML Label lblError;
 	
 	List<String> checkedBoxes = new ArrayList<>();
 	
@@ -43,7 +50,7 @@ public class BooksController {
 		anchorPaneModal.requestFocus();
 	}
 	
-	public void actionAddBook(ActionEvent event) throws IOException {
+	public void actionAddBookModalShow(ActionEvent event) throws IOException {
 		DashboardController dashControl = new DashboardController();
 		dashControl.openModalWindow("BookAdd.fxml", "Add Book");		
 	}
@@ -101,6 +108,50 @@ public class BooksController {
 			e.printStackTrace();
 		}
 		return bookList;
+	}
+	
+	// Add Book (CREATE)
+	public void actionAddBook(ActionEvent event) throws SQLException {
+		String booktype = "jpg";
+		String bookname = txtFieldBookName.getText();
+		String bookdescription = txtFieldBookDescription.getText();
+		String booksubject = txtFieldBookSubject.getText();
+		String booklevel = txtFieldBookLevel.getText();
+		String uemail = "mimi@email.com";
+		String bookfilelocation = "../fileuploads/3/2";
+		if(!booktype.isEmpty() && !bookname.isEmpty() && !bookdescription.isEmpty() && 
+			!booksubject.isEmpty() && !booklevel.isEmpty() && !bookfilelocation.isEmpty()) {
+			dbObj = new DBObj();
+			try {
+				//Establish connection
+				Connection dbconn = dbObj.getConnection();
+				String cstmt_addBook = "{call AddFile(?, ?, ?, ?, ?, ?, ?)}";
+				CallableStatement cstmt = dbconn.prepareCall(cstmt_addBook);
+				cstmt.setString(1, booktype);
+				cstmt.setString(2, bookname);
+				cstmt.setString(3, bookdescription);
+				cstmt.setString(4, booksubject);
+				cstmt.setString(5, booklevel);
+				cstmt.setString(6, uemail);
+				cstmt.setString(7, bookfilelocation);
+				cstmt.execute();
+				ResultSet result = cstmt.getResultSet();
+				while(result.next()) {
+					lblError.setText(result.getString("message"));
+				}
+				txtFieldBookName.setText("");
+				txtFieldBookDescription.setText("");
+				txtFieldBookSubject.setText("");
+				txtFieldBookLevel.setText("");
+				txtFieldBookFile.setText("");
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}else {
+			CustomErrors customError = new CustomErrors();
+			String error = customError.EmptyFields();
+			lblError.setText(error);
+		}
 	}
 	
 	// Delete users (DELETE)

@@ -50,7 +50,7 @@ public class UsersController{
 	}
 	
 	// Action method to display add modal
-	public void actionAddUser(ActionEvent event) throws IOException {
+	public void actionAddUserModalShow(ActionEvent event) throws IOException {
 		DashboardController dashControl = new DashboardController();
 		dashControl.openModalWindow("UserAdd.fxml", "Add User/s");		
 	}

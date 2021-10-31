@@ -18,6 +18,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
@@ -31,6 +32,8 @@ public class LevelsController {
 	@FXML Button btnLoadLevels;
 	@FXML Button btnDeleteLevels;
 	@FXML Label lblLevelsAvailable;
+	@FXML TextField txtFieldLevelName;
+	@FXML Label lblError;
 	
 	List<String> checkedBoxes = new ArrayList<>();
 	
@@ -40,7 +43,7 @@ public class LevelsController {
 		anchorPaneModal.requestFocus();
 	}
 	
-	public void actionAddLevel(ActionEvent event) throws IOException {
+	public void actionAddLevelModalShow(ActionEvent event) throws IOException {
 		DashboardController dashControl = new DashboardController();
 		dashControl.openModalWindow("LevelAdd.fxml", "Add Level");
 	}
@@ -95,6 +98,34 @@ public class LevelsController {
 			e.printStackTrace();
 		}
 		return levelList;
+	}
+	
+	// Add Level (CREATE)
+	public void actionAddLevel(ActionEvent event) throws SQLException {
+		String levelname = txtFieldLevelName.getText();
+		if(!levelname.isEmpty()) {
+			dbObj = new DBObj();
+			try {
+				//Establish connection
+				Connection dbconn = dbObj.getConnection();
+				String cstmt_addLevel = "{call AddLevel(?, ?)}";
+				CallableStatement cstmt = dbconn.prepareCall(cstmt_addLevel);
+				cstmt.setString(1, levelname);
+				cstmt.setString(2, "mimi");
+				cstmt.execute();
+				ResultSet result = cstmt.getResultSet();
+				while(result.next()) {
+					lblError.setText(result.getString("message"));
+				}
+				txtFieldLevelName.setText("");
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}else {
+			CustomErrors customError = new CustomErrors();
+			String error = customError.EmptyFields();
+			lblError.setText(error);
+		}
 	}
 	
 	// Delete levels (DELETE)

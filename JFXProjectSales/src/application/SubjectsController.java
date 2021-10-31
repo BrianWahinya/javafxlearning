@@ -18,6 +18,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
@@ -31,6 +32,8 @@ public class SubjectsController {
 	@FXML Button btnLoadSubjects;
 	@FXML Button btnDeleteSubjects;
 	@FXML Label lblSubjectsAvailable;
+	@FXML TextField txtFieldSubjectName;
+	@FXML Label lblError;
 	
 	List<String> checkedBoxes = new ArrayList<>();
 	
@@ -40,7 +43,7 @@ public class SubjectsController {
 		anchorPaneModal.requestFocus();
 	}
 	
-	public void actionAddSubject(ActionEvent event) throws IOException {
+	public void actionAddSubjectModalShow(ActionEvent event) throws IOException {
 		DashboardController dashControl = new DashboardController();
 		dashControl.openModalWindow("SubjectAdd.fxml", "Add Subject");		
 	}
@@ -95,6 +98,34 @@ public class SubjectsController {
 			e.printStackTrace();
 		}
 		return subjectList;
+	}
+	
+	// Add Subject (CREATE)
+	public void actionAddSubject(ActionEvent event) throws SQLException {
+		String subjectname = txtFieldSubjectName.getText();
+		if(!subjectname.isEmpty()) {
+			dbObj = new DBObj();
+			try {
+				//Establish connection
+				Connection dbconn = dbObj.getConnection();
+				String cstmt_addSubject = "{call AddSubject(?, ?)}";
+				CallableStatement cstmt = dbconn.prepareCall(cstmt_addSubject);
+				cstmt.setString(1, subjectname);
+				cstmt.setString(2, "mimi");
+				cstmt.execute();
+				ResultSet result = cstmt.getResultSet();
+				while(result.next()) {
+					lblError.setText(result.getString("message"));
+				}
+				txtFieldSubjectName.setText("");
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}else {
+			CustomErrors customError = new CustomErrors();
+			String error = customError.EmptyFields();
+			lblError.setText(error);
+		}
 	}
 	
 	// Delete users (DELETE)

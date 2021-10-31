@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="620.0" style="-fx-background-color: #f7fcff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SubjectsController">
    <children>
-      <Button fx:id="btnAddSubjects" layoutX="525.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionAddSubject" text="Add Subject" />
+      <Button fx:id="btnAddSubjects" layoutX="525.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionAddSubjectModalShow" text="Add Subject" />
       <TableView fx:id="tableSubjects" layoutX="4.0" layoutY="49.0" prefHeight="345.0" prefWidth="612.0">
          <columns>
             <TableColumn fx:id="colSubjectname" prefWidth="464.0" text="Subject" />

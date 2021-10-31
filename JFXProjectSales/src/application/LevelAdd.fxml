@@ -12,7 +12,7 @@
    <children>
       <Pane prefHeight="7.0" prefWidth="600.0" style="-fx-background-color: #609c88;" />
       <TextField fx:id="txtFieldLevelName" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="232.0" promptText="Level name" />
-      <Button fx:id="btnAddLevelsModal" layoutX="494.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #609c88;" text="Add" textFill="WHITE" />
+      <Button fx:id="btnAddLevelsModal" layoutX="494.0" layoutY="14.0" mnemonicParsing="false" onAction="#actionAddLevel" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #609c88;" text="Add" textFill="WHITE" />
       <Label layoutX="14.0" layoutY="50.0" text="or add multiple users from excel/csv file" />
       <TableView layoutX="14.0" layoutY="76.0" prefHeight="311.0" prefWidth="577.0">
         <columns>
@@ -21,5 +21,6 @@
             <TableColumn prefWidth="215.0" text="Info" />
         </columns>
       </TableView>
+      <Label fx:id="lblError" layoutX="303.0" layoutY="50.0" text="Error" textFill="#e82020" />
    </children>
 </AnchorPane>
