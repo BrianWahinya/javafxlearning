@@ -41,9 +41,9 @@ public class UsersController{
 	@FXML TextField txtFieldUsername;
 	@FXML TextField txtFieldEmail;
 	@FXML Label lblError;
-	@FXML Label checkedBoxes;
+//	@FXML Label checkedBoxes;
 	
-	List<String> ckbx = new ArrayList<>();
+	List<String> checkedBoxes = new ArrayList<>();
 	
 	DBObj dbObj;
 	
@@ -94,13 +94,9 @@ public class UsersController{
 	                public void handle(ActionEvent e)
 	                {
 	                    if (checkbox.isSelected()) {
-	                    	ckbx.add(uname);
-	                    	String str = ckbx.toString();
-	                    	checkedBoxes.setText(str);
+	                    	checkedBoxes.add(uname);
 	                    } else {
-	                    	ckbx.remove(new String(uname));
-		                    String stri = ckbx.toString();
-	                    	checkedBoxes.setText(stri);
+	                    	checkedBoxes.remove(new String(uname));
 	                    }
 	                }
 	  
@@ -148,9 +144,27 @@ public class UsersController{
 	
 	// Delete users (DELETE)
 	public void actionDeleteUsers(ActionEvent event) {
-		System.out.println("To be deleted: " + ckbx);
-		for (String i : ckbx) {
-			  System.out.println(i);
+		System.out.println("To be deleted: " + checkedBoxes);
+		List<String> deleteMessages = new ArrayList<>();
+		dbObj = new DBObj();
+		try {
+			//Establish connection
+			Connection dbconn = dbObj.getConnection();
+			for (String i : checkedBoxes) {
+				  System.out.println(i);
+				  String cstmt_deleteUser = "{call DeleteUser(?)}";
+				  CallableStatement cstmt = dbconn.prepareCall(cstmt_deleteUser);
+				  cstmt.setString(1, i);
+				  cstmt.execute();
+				  ResultSet result = cstmt.getResultSet();
+				  while(result.next()) {
+					  deleteMessages.add(result.getString("message"));
+				  }
+			}
+			System.out.println("Deleted messages: " + deleteMessages);
+			generateAllUsers();
+		}catch(SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
