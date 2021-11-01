@@ -1,5 +1,7 @@
 package application;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -8,8 +10,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -20,7 +25,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 
 public class BooksController {
 	@FXML AnchorPane anchorPaneModal;
@@ -35,6 +43,7 @@ public class BooksController {
 	@FXML Button btnAddBooks;
 	@FXML Button btnLoadBooks;
 	@FXML Button btnDeleteBooks;
+	@FXML Button btnBookBrowse;
 	@FXML Label lblBooksAvailable;
 	@FXML TextField txtFieldBookName;
 	@FXML TextField txtFieldBookLevel;
@@ -42,6 +51,9 @@ public class BooksController {
 	@FXML TextField txtFieldBookDescription;
 	@FXML TextField txtFieldBookFile;
 	@FXML Label lblError;
+	@FXML ImageView imgView;
+	
+	File file;
 	
 	List<String> checkedBoxes = new ArrayList<>();
 	
@@ -58,6 +70,22 @@ public class BooksController {
 	
 	public void actionGetAllBooks(ActionEvent event) throws SQLException {
 		generateAllBooks();
+	}
+	
+	public void actionBrowse(ActionEvent event) throws IOException {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Select file");
+		fileChooser.getExtensionFilters().addAll(
+				new FileChooser.ExtensionFilter("All Files (*.pdf,*docx,*doc,*txt)", "*.pdf", "*.docx", "*.doc", "*.txt"),
+				new FileChooser.ExtensionFilter("Adobe Acrobat Document (*.pdf)", "*.pdf"),
+				new FileChooser.ExtensionFilter("Microsoft Word Document (*.docx)", "*.docx"),
+				new FileChooser.ExtensionFilter("Microsoft Word Document (*.doc)", "*.doc"),
+				new FileChooser.ExtensionFilter("Text files (*.txt)", "*.txt"));
+		file = fileChooser.showOpenDialog(DashboardController.getPrimaryStage());
+		BufferedImage bf;
+		bf = ImageIO.read(file);
+		Image image = SwingFXUtils.toFXImage(bf, null);
+		imgView.setImage(image);
 	}
 	
 	public void generateAllBooks() throws SQLException {

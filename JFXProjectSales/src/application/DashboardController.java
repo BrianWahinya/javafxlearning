@@ -36,6 +36,8 @@ public class DashboardController {
 	Parent root;
 	Stage window;
 	
+	private static Stage primStage;
+	
 	// Show logged in user
 	public void setUserName(String username) {
 		lblUsername.setText(username);
@@ -90,6 +92,7 @@ public class DashboardController {
 //					}
 //	          }
 //	      });
+		setPrimaryStage(window);
 		modalStage.showAndWait();		
 	}
 		
@@ -146,6 +149,13 @@ public class DashboardController {
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(mainScene);
 		window.show();
-	}	
+	}
 	
+	private void setPrimaryStage(Stage primStage) {
+		DashboardController.primStage = primStage;
+	}
+	
+	public static Stage getPrimaryStage() {
+		return primStage;
+	}
 }
