@@ -28,6 +28,7 @@ public class SubjectsController {
 	@FXML TableColumn<Subjects, String> colSubjectname;
 	@FXML TableColumn<Subjects, CheckBox> colSubjectTableActions;
 	@FXML Button btnAddSubjectsModal;
+	@FXML Button btnEditSubjectModal;
 	@FXML Button btnAddSubjects;
 	@FXML Button btnLoadSubjects;
 	@FXML Button btnDeleteSubjects;
@@ -128,7 +129,13 @@ public class SubjectsController {
 		}
 	}
 	
-	// Delete users (DELETE)
+	// Edit subject modal show
+	public void actionEditSubjectModalShow(ActionEvent event) throws IOException {
+//		DashboardController dashControl = new DashboardController();
+//		dashControl.openModalWindow("SubjectAdd.fxml", "Add Subject");		
+	}
+	
+	// Delete subjects (DELETE)
 	public void actionDeleteSubjects(ActionEvent event) {
 		// System.out.println("To be deleted: " + checkedBoxes);
 		List<String> deleteMessages = new ArrayList<>();

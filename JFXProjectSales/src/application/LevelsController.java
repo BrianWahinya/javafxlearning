@@ -28,6 +28,7 @@ public class LevelsController {
 	@FXML TableColumn<Levels, String> colLevelname;
 	@FXML TableColumn<Levels, CheckBox> colLevelTableActions;
 	@FXML Button btnAddLevelsModal;
+	@FXML Button btnEditLevelModal;
 	@FXML Button btnAddLevels;
 	@FXML Button btnLoadLevels;
 	@FXML Button btnDeleteLevels;
@@ -126,6 +127,12 @@ public class LevelsController {
 			String error = customError.EmptyFields();
 			lblError.setText(error);
 		}
+	}
+	
+	// Edit level modal show
+	public void actionEditLevelModalShow(ActionEvent event) throws IOException {
+//		DashboardController dashControl = new DashboardController();
+//		dashControl.openModalWindow("LevelAdd.fxml", "Add Level");
 	}
 	
 	// Delete levels (DELETE)

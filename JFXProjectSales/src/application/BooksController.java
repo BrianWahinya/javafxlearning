@@ -31,6 +31,7 @@ public class BooksController {
 	@FXML TableColumn<Books, String> colBookLevel;
 	@FXML TableColumn<Books, CheckBox> colBookTableActions;
 	@FXML Button btnAddBooksModal;
+	@FXML Button btnEditBookModal;
 	@FXML Button btnAddBooks;
 	@FXML Button btnLoadBooks;
 	@FXML Button btnDeleteBooks;
@@ -154,7 +155,13 @@ public class BooksController {
 		}
 	}
 	
-	// Delete users (DELETE)
+	// Edit book modal show
+	public void actionEditBookModalShow(ActionEvent event) throws IOException {
+//		DashboardController dashControl = new DashboardController();
+//		dashControl.openModalWindow("BookAdd.fxml", "Add Book");		
+	}
+	
+	// Delete books (DELETE)
 	public void actionDeleteBooks(ActionEvent event) {
 		// System.out.println("To be deleted: " + checkedBoxes);
 		List<String> deleteMessages = new ArrayList<>();

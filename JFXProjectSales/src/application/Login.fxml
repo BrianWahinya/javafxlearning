@@ -11,10 +11,10 @@
    <children>
       <TextField fx:id="txtFieldUsernameOrEmail" layoutX="153.0" layoutY="141.0" prefHeight="34.0" prefWidth="295.0" promptText="Username or Email" />
       <PasswordField fx:id="pwdField" layoutX="153.0" layoutY="189.0" prefHeight="34.0" prefWidth="295.0" promptText="Password" />
-      <Button fx:id="btnLogin" layoutX="153.0" layoutY="258.0" mnemonicParsing="false" onAction="#actionLogin" prefHeight="34.0" prefWidth="139.0" style="-fx-background-color: #538a50;" text="Login" textFill="WHITE" />
+      <Button fx:id="btnLogin" layoutX="153.0" layoutY="258.0" mnemonicParsing="false" onAction="#actionLogin" prefHeight="34.0" prefWidth="139.0" style="-fx-background-color: #218838;" text="Login" textFill="WHITE" />
       <Button fx:id="btnBackToMain" layoutX="384.0" layoutY="258.0" mnemonicParsing="false" onAction="#actionBackToMain" prefHeight="34.0" prefWidth="64.0" text="Back" />
-      <Button fx:id="btnGoToRegister" layoutX="307.0" layoutY="258.0" mnemonicParsing="false" onAction="#actionGoToRegister" prefHeight="34.0" prefWidth="64.0" style="-fx-background-color: #50748a;" text="Register" textFill="WHITE" />
-      <Label fx:id="lblLoginErrors" layoutX="166.0" layoutY="108.0" prefHeight="17.0" prefWidth="269.0" text="Display errors" textFill="#bc0909" />
+      <Button fx:id="btnGoToRegister" layoutX="307.0" layoutY="258.0" mnemonicParsing="false" onAction="#actionGoToRegister" prefHeight="34.0" prefWidth="64.0" style="-fx-background-color: #0069D9;" text="Register" textFill="WHITE" />
+      <Label fx:id="lblLoginErrors" layoutX="166.0" layoutY="108.0" prefHeight="17.0" prefWidth="269.0" textFill="#bc0909" />
       <Label alignment="CENTER" layoutX="274.0" layoutY="53.0" text="Login">
          <font>
             <Font name="System Bold" size="14.0" />

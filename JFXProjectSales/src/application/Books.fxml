@@ -8,19 +8,20 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="620.0" style="-fx-background-color: #f7fcff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BooksController">
    <children>
-      <Button fx:id="btnAddBooks" layoutX="537.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionAddBookModalShow" text="Add Book" />
+      <Button fx:id="btnAddBooks" layoutX="363.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionAddBookModalShow" text="Add Book" textFill="#0069d9" />
       <TableView fx:id="tableBooks" layoutX="4.0" layoutY="49.0" prefHeight="345.0" prefWidth="612.0">
          <columns>
             <TableColumn fx:id="colBookName" prefWidth="229.0" text="Name" />
             <TableColumn fx:id="colBookType" prefWidth="51.0" text="Type" />
-            <TableColumn fx:id="colBookSubject" minWidth="8.0" prefWidth="115.0" text="Subject" />
-            <TableColumn fx:id="colBookLevel" minWidth="8.0" prefWidth="71.0" text="Level" />
-            <TableColumn fx:id="colBookTableActions" minWidth="8.0" prefWidth="125.0" text="Actions" />
+            <TableColumn fx:id="colBookSubject" minWidth="8.0" prefWidth="152.0" text="Subject" />
+            <TableColumn fx:id="colBookLevel" minWidth="8.0" prefWidth="117.0" text="Level" />
+            <TableColumn fx:id="colBookTableActions" minWidth="8.0" prefWidth="50.0" text="Actions" />
          </columns>
       </TableView>
       <Label layoutX="14.0" layoutY="20.0" text="Available Books: " />
       <Label fx:id="lblBooksAvailable" layoutX="103.0" layoutY="20.0" text="     " underline="true" />
-      <Button fx:id="btnLoadBooks" layoutX="436.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionGetAllBooks" text="Load Books" />
-      <Button fx:id="btnDeleteBooks" layoutX="338.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionDeleteBooks" text="Delete Books" textFill="#d71c1c" />
+      <Button fx:id="btnLoadBooks" layoutX="277.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionGetAllBooks" text="Load Books" textFill="#218838" />
+      <Button fx:id="btnDeleteBooks" layoutX="520.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionDeleteBooks" text="Delete Books" textFill="#c82333" />
+      <Button fx:id="btnEditBook" layoutX="443.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionEditBookModalShow" text="Edit Book" textFill="#b97312" />
    </children>
 </AnchorPane>

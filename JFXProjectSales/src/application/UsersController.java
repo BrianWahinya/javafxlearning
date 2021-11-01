@@ -32,6 +32,7 @@ public class UsersController{
 	@FXML TableColumn<Users, CheckBox> colUserTableActions;
 	@FXML CheckBox checkBox;
 	@FXML Button btnAddUsersModal;
+	@FXML Button btnEditUserModal;
 	@FXML Button btnAddUsers;
 	@FXML Button btnLoadUsers;
 	@FXML Button btnDeleteUsers;
@@ -137,6 +138,12 @@ public class UsersController{
 			String error = customError.EmptyFields();
 			lblError.setText(error);
 		}
+	}
+	
+	// Edit user modal show
+	public void actionEditUserModalShow(ActionEvent event) throws IOException {
+//		DashboardController dashControl = new DashboardController();
+//		dashControl.openModalWindow("UserAdd.fxml", "Add User/s");		
 	}
 	
 	// Delete users (DELETE)

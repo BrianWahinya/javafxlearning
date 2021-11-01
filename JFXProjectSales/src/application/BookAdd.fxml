@@ -25,6 +25,6 @@
       <TextField fx:id="txtFieldBookSubject" layoutX="14.0" layoutY="83.0" prefHeight="25.0" prefWidth="232.0" promptText="Subject name" />
       <TextField fx:id="txtFieldBookLevel" layoutX="14.0" layoutY="114.0" prefHeight="25.0" prefWidth="232.0" promptText="Level name" />
       <TextField fx:id="txtFieldBookFile" layoutX="14.0" layoutY="154.0" prefHeight="25.0" prefWidth="232.0" promptText="Select file" />
-      <Label fx:id="lblError" layoutX="300.0" layoutY="192.0" text="Error" textFill="#e82020" />
+      <Label fx:id="lblError" layoutX="300.0" layoutY="192.0" textFill="#e82020" />
    </children>
 </AnchorPane>

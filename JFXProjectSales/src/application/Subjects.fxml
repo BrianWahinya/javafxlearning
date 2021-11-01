@@ -8,16 +8,17 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="620.0" style="-fx-background-color: #f7fcff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SubjectsController">
    <children>
-      <Button fx:id="btnAddSubjects" layoutX="525.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionAddSubjectModalShow" text="Add Subject" />
+      <Button fx:id="btnAddSubjects" layoutX="328.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionAddSubjectModalShow" text="Add Subject" textFill="#0069d9" />
       <TableView fx:id="tableSubjects" layoutX="4.0" layoutY="49.0" prefHeight="345.0" prefWidth="612.0">
          <columns>
-            <TableColumn fx:id="colSubjectname" prefWidth="464.0" text="Subject" />
-            <TableColumn fx:id="colSubjectTableActions" minWidth="8.0" prefWidth="125.0" text="Actions" />
+            <TableColumn fx:id="colSubjectname" prefWidth="550.0" text="Subject" />
+            <TableColumn fx:id="colSubjectTableActions" minWidth="8.0" prefWidth="50.0" text="Actions" />
          </columns>
       </TableView>
       <Label layoutX="14.0" layoutY="20.0" text="Available Subjects: " />
       <Label fx:id="lblSubjectsAvailable" layoutX="116.0" layoutY="20.0" text="     " underline="true" />
-      <Button fx:id="btnLoadSubjects" layoutX="424.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionGetAllSubjects" text="Load Subjects" />
-      <Button fx:id="btnDeleteSubjects" layoutX="316.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionDeleteSubjects" text="Delete Subjects" textFill="#d71c1c" />
+      <Button fx:id="btnLoadSubjects" layoutX="227.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionGetAllSubjects" text="Load Subjects" textFill="#218838" />
+      <Button fx:id="btnDeleteSubjects" layoutX="508.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionDeleteSubjects" text="Delete Subjects" textFill="#c82333" />
+      <Button fx:id="btnEditSubject" layoutX="419.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionEditSubjectModalShow" text="Edit Subject" textFill="#b97312" />
    </children>
 </AnchorPane>

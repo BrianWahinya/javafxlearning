@@ -21,6 +21,7 @@ public class MainController {
 		Parent login = loginLoader.load();
 		
 		Stage loginStage = new Stage();
+		loginStage.setTitle("Books App (Login)");
 		loginStage.setScene(new Scene(login));
 		
 		LoginController loginController = (LoginController) loginLoader.getController();

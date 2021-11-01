@@ -73,7 +73,7 @@ public class LoginController {
 				Parent root = dashLoader.load();
 				
 				Stage dashStage = new Stage();
-				dashStage.setTitle("Dashboard");
+				dashStage.setTitle("Books App (Dashboard - Admin)");
 				dashStage.setScene(new Scene(root));
 				
 				DashboardController dashController = (DashboardController) dashLoader.getController();

@@ -21,6 +21,6 @@
             <TableColumn prefWidth="215.0" text="Info" />
         </columns>
       </TableView>
-      <Label fx:id="lblError" layoutX="300.0" layoutY="50.0" text="Error" textFill="#e82020" />
+      <Label fx:id="lblError" layoutX="300.0" layoutY="50.0" textFill="#e82020" />
    </children>
 </AnchorPane>
