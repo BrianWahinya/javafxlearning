@@ -9,11 +9,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MainController {
 	@FXML Button btnGoToLogin;
 	@FXML Button btnGoToRegister;
+	Common common = new Common();
 	
 	public void actionGoToLogin(ActionEvent event) throws IOException {
 		
@@ -21,6 +23,7 @@ public class MainController {
 		Parent login = loginLoader.load();
 		
 		Stage loginStage = new Stage();
+		loginStage.getIcons().add(common.StageIcon());
 		loginStage.setTitle("Books App (Login)");
 		loginStage.setScene(new Scene(login));
 		

@@ -32,11 +32,13 @@ public class DashboardController {
 	@FXML Button btnLogout;
 	@FXML MenuItem mnItemClose;
 	
+	Common common = new Common();
+	
 	Scene fxmlFile;
 	Parent root;
 	Stage window;
 	
-	private static Stage primStage;
+//	private static Stage primStage;
 	
 	// Show logged in user
 	public void setUserName(String username) {
@@ -53,6 +55,7 @@ public class DashboardController {
 		
 		Stage modalStage = new Stage();
 		modalStage.setScene(new Scene(modal));
+		modalStage.getIcons().add(common.StageIcon());
 		
 		switch(resource) {
 			case "UserAdd.fxml":
@@ -70,6 +73,10 @@ public class DashboardController {
 			case "BookAdd.fxml":
 				BooksController booksController = (BooksController) modalLoader.getController();
 				booksController.resetFocus();
+				break;
+			case "Media.fxml":
+//				MediaController mediaController = (MediaController) modalLoader.getController();
+//				mediaController.resetFocus();
 				break;
 		}
 		
@@ -92,7 +99,7 @@ public class DashboardController {
 //					}
 //	          }
 //	      });
-		setPrimaryStage(window);
+//		setPrimaryStage(window);
 		modalStage.showAndWait();		
 	}
 		
@@ -151,11 +158,11 @@ public class DashboardController {
 		window.show();
 	}
 	
-	private void setPrimaryStage(Stage primStage) {
-		DashboardController.primStage = primStage;
-	}
-	
-	public static Stage getPrimaryStage() {
-		return primStage;
-	}
+//	private void setPrimaryStage(Stage primStage) {
+//		DashboardController.primStage = primStage;
+//	}
+//	
+//	private static Stage getPrimaryStage() {
+//		return primStage;
+//	}
 }

@@ -27,6 +27,7 @@ public class LoginController {
 	@FXML Button btnGoToRegister;
 	@FXML Button btnBackToMain;
 	@FXML Label lblLoginErrors;
+	Common common = new Common();
 	
 	// Register Button Action
 	public void actionGoToRegister(ActionEvent event) {
@@ -40,6 +41,7 @@ public class LoginController {
 		Scene mainScene = new Scene(mainStage);
 		
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		window.getIcons().add(common.StageIcon());
 		window.setScene(mainScene);
 		window.show();
 	}
@@ -73,6 +75,7 @@ public class LoginController {
 				Parent root = dashLoader.load();
 				
 				Stage dashStage = new Stage();
+				dashStage.getIcons().add(common.StageIcon());
 				dashStage.setTitle("Books App (Dashboard - Admin)");
 				dashStage.setScene(new Scene(root));
 				

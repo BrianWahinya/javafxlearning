@@ -13,9 +13,10 @@
          <columns>
             <TableColumn fx:id="colBookName" prefWidth="229.0" text="Name" />
             <TableColumn fx:id="colBookType" prefWidth="51.0" text="Type" />
-            <TableColumn fx:id="colBookSubject" minWidth="8.0" prefWidth="152.0" text="Subject" />
-            <TableColumn fx:id="colBookLevel" minWidth="8.0" prefWidth="117.0" text="Level" />
-            <TableColumn fx:id="colBookTableActions" minWidth="8.0" prefWidth="50.0" text="Actions" />
+            <TableColumn fx:id="colBookSubject" minWidth="8.0" prefWidth="124.0" text="Subject" />
+            <TableColumn fx:id="colBookLevel" minWidth="8.0" prefWidth="61.0" text="Level" />
+            <TableColumn fx:id="colBookTableActions" minWidth="8.0" prefWidth="56.0" text="Actions" />
+            <TableColumn fx:id="colBookTableView" minWidth="8.0" prefWidth="56.0" text="View" />
          </columns>
       </TableView>
       <Label layoutX="14.0" layoutY="20.0" text="Available Books: " />

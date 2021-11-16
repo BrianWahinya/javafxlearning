@@ -15,6 +15,8 @@ public class Main extends Application {
 		try {
 			Parent main = FXMLLoader.load(getClass().getResource("Main.fxml"));
 			Scene mainScene = new Scene(main);
+			Common common = new Common();
+			primaryStage.getIcons().add(common.StageIcon());
 			primaryStage.setScene(mainScene);
 			primaryStage.setTitle("Books App");
 			primaryStage.initStyle(StageStyle.UNDECORATED);
