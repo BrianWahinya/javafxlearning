@@ -25,9 +25,10 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 public class MediaViewController {
+	private Stage stage;
+	
 	private BorderPane borderPaneModal;
-	private Button btnPlay;
-	private Button btnPause;
+	private Button btnPlayPause;
 	private HBox hbox;
 	
 	private Media media;
@@ -35,8 +36,7 @@ public class MediaViewController {
 	private MediaPlayer mediaPlayer;
 	
 	String mediaPath = "http://localhost/fileapp/fileuploads/1/1/linked.mp4";
-	
-	private Stage stage;
+	Boolean isPlaying;
 	
 	public void initialize() {
 //		Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
@@ -56,6 +56,7 @@ public class MediaViewController {
 		mediaPlayer = new MediaPlayer(media);		
 		mediaPlayer.setAutoPlay(true);
 		mediaPlayer.setOnReady(() -> {
+			isPlaying = true;
 			vboxLoading.setVisible(false);
 			vboxLoading.managedProperty().bind(vboxLoading.visibleProperty());
 			stage.sizeToScene();
@@ -63,16 +64,21 @@ public class MediaViewController {
 		mediaView = new MediaView(mediaPlayer);
 		borderPaneModal.setCenter(mediaView);
 		
-		btnPlay = new Button(">");
-		btnPlay.setOnAction(event -> {
-			playVideo(event);
-		});
-		btnPause = new Button("||");
-		btnPause.setOnAction(event -> {
-			pauseVideo(event);
+		btnPlayPause = new Button();
+		btnPlayPause.setText("||");
+		btnPlayPause.setOnAction(event -> {
+			if(isPlaying) {
+				isPlaying = false;
+				btnPlayPause.setText("||");
+				playVideo(event);
+			}else {
+				isPlaying = true;
+				btnPlayPause.setText(">");
+				pauseVideo(event);
+			}
 		});
 		hbox = new HBox(10);
-		hbox.getChildren().addAll(btnPlay, btnPause);
+		hbox.getChildren().addAll(btnPlayPause);
 		hbox.setPadding(new Insets(10));
 		borderPaneModal.setBottom(hbox);
 		
