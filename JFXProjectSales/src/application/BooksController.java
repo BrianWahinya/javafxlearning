@@ -80,6 +80,12 @@ public class BooksController {
 		mediaviewController.initialize();
 	}
 	
+	// View PDF
+	public void actionViewBookModalShowPdf(ActionEvent event) throws IOException {		
+		MediaViewController mediaviewController = new MediaViewController();
+		mediaviewController.initialize();
+	}
+	
 	public void actionGetAllBooks(ActionEvent event) throws SQLException {
 		generateAllBooks();
 	}
