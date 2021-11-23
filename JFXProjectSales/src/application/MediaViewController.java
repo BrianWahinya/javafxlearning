@@ -1,5 +1,6 @@
 package application;
 
+import java.io.File;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 
@@ -44,16 +45,19 @@ public class MediaViewController {
 	private Slider volumeSlider;
 	private Label lblMediaTime;
 	
-	String mediaPath = "http://localhost/fileapp/fileuploads/1/1/linked.mp4";
+	String mediaPath = "http://localhost/fileapp/fileuploads/1/1/test9.mp4";
 	Boolean isPlaying;
 	Boolean atEndOfVideo;
 	Double currentVolume = 0.4;
+
+	Duration totalMediaDuration;
+	String total;
 	
 	public void initialize() {
 //		Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
 //		Stage stage=(Stage) lblHack.getScene().getWindow();
 		stage = new Stage();
-		stage.setTitle("new stage");
+		stage.setTitle("Now playing...");
 		stage.initStyle(StageStyle.UTILITY);
 		borderPaneModal = new BorderPane();
 		
@@ -65,9 +69,11 @@ public class MediaViewController {
 		borderPaneModal.setTop(vboxLoading);
 		
 		media = new Media(mediaPath);
+//		media = new Media(MEDIA_URL);
 		mediaPlayer = new MediaPlayer(media);		
 		mediaPlayer.setAutoPlay(true);
 		mediaPlayer.setOnReady(() -> {
+			System.out.println("Test");
 			lblMediaTime = new Label("0.0");
 			isPlaying = true;
 			vboxLoading.setVisible(false);
@@ -107,20 +113,18 @@ public class MediaViewController {
 		// Media slider progress time
 		mediaSlider = new Slider();
 		mediaSlider.setCursor(Cursor.HAND);
-		mediaSlider.setPrefWidth(mediaView.getFitWidth());
 		
 		lblMediaTime = new Label();
-		Label totalTime = new Label();
-		
-		bindCurrentTime();
 		
 		mediaPlayer.totalDurationProperty().addListener((ChangeListener<? super Duration>) new ChangeListener<Duration>() {
 			@Override
 			public void changed(ObservableValue<? extends Duration> observableValue, Duration oldDuration, Duration newDuration) {
 				mediaSlider.setMax(newDuration.toSeconds());
-				totalTime.setText(getTime(newDuration));
+				total = getTime(newDuration);
 			}
 		});
+		
+		bindCurrentTime();
 		
 		mediaSlider.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
@@ -161,8 +165,12 @@ public class MediaViewController {
 			}
 		});
 		
+		HBox mainHbox = new HBox(10);
+		mainHbox.setPadding(new Insets(10));
+		
+		
 		HBox timeHbox = new HBox(10);
-		timeHbox.getChildren().addAll(mediaSlider, lblMediaTime, totalTime);
+		timeHbox.getChildren().addAll(mediaSlider, lblMediaTime);
 		
 		// Volume adjust slider
 		volumeSlider = new Slider();
@@ -173,19 +181,28 @@ public class MediaViewController {
 		
 		mediaPlayer.volumeProperty().bindBidirectional(volumeSlider.valueProperty());
 				
-		hbox = new HBox(10);
-		hbox.getChildren().addAll(btnPlayPause, volumeSlider);
-		hbox.setPadding(new Insets(10));
+		hbox = new HBox(5);
+		hbox.getChildren().addAll(btnPlayPause);
+//		hbox.setPadding(new Insets(10));
+		
+		HBox volumeHbox = new HBox(5);
+		volumeHbox.getChildren().addAll(volumeSlider);
+		
+		mainHbox.getChildren().addAll(hbox, volumeHbox);
 		
 		VBox vboxVideoActions = new VBox();
-		vboxVideoActions.getChildren().addAll(timeHbox, hbox);
+		vboxVideoActions.getChildren().addAll(timeHbox, mainHbox);
 		borderPaneModal.setBottom(vboxVideoActions);
 		
-		mediaSlider.prefWidthProperty().bind(timeHbox.widthProperty().divide(1.2));
+		mediaView.fitHeightProperty().bind(borderPaneModal.heightProperty().subtract(70));
+		mediaSlider.prefWidthProperty().bind(timeHbox.widthProperty().subtract(80));
 		timeHbox.prefWidthProperty().bind(vboxVideoActions.widthProperty());
+		hbox.prefWidthProperty().bind(vboxVideoActions.widthProperty().subtract(110));
 		vboxVideoActions.prefWidthProperty().bind(borderPaneModal.widthProperty());
 		
 		Scene scene = new Scene(borderPaneModal);
+		stage.setWidth(800);
+        stage.setHeight(600);
 		stage.setScene(scene);
 		stage.show();
 		
@@ -204,7 +221,7 @@ public class MediaViewController {
 		lblMediaTime.textProperty().bind(Bindings.createStringBinding(new Callable<String>() {
 			@Override
 			public String call() throws Exception{
-				return getTime(mediaPlayer.getCurrentTime()) + " / ";
+				return getTime(mediaPlayer.getCurrentTime()) + "/" + total;
 			}
 		}, mediaPlayer.currentTimeProperty()));
 	}
@@ -240,9 +257,10 @@ public class MediaViewController {
             if(res.get().equals(ButtonType.CANCEL))
                 event.consume();
         }
-        
-        mediaPlayer.stop();
-        mediaPlayer.dispose();
+        if(mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.dispose();
+        }
     }	
 	
 	private void resetFocus() {
@@ -251,12 +269,12 @@ public class MediaViewController {
 	
 	public void playVideo() {
 //		System.out.println("Button Play pressed");
-		mediaPlayer.play();
+		if(mediaPlayer != null) mediaPlayer.play();
 	}
 	
 	public void pauseVideo() {
 //		System.out.println("Button Pause pressed");
-		mediaPlayer.pause();
+		if(mediaPlayer != null) mediaPlayer.pause();
 	}
 	
 }
