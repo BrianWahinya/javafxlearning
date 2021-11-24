@@ -81,9 +81,10 @@ public class BooksController {
 	}
 	
 	// View PDF
-	public void actionViewBookModalShowPdf(ActionEvent event) throws IOException {		
-		MediaViewController mediaviewController = new MediaViewController();
-		mediaviewController.initialize();
+	public void actionViewBookModalShowPdf(ActionEvent event) throws IOException {
+		System.out.println("View Book Pdf: ");
+		PdfViewController pdfViewController = new PdfViewController();
+		pdfViewController.initializePdfView();
 	}
 	
 	public void actionGetAllBooks(ActionEvent event) throws SQLException {
@@ -162,11 +163,11 @@ public class BooksController {
 	            btnview.setPrefSize(20, 20);
 	            btnview.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 	            btnview.setOnAction(event -> {
-	            	System.out.println("Id: ");
+//	            	System.out.println("Id: ");
 	            	try {
 						switch(ftype.toLowerCase()) {
 				            case "pdf":
-				            	viewBookPdf(event, fname, flocation);
+				            	actionViewBookModalShowPdf(event);
 				            	break;
 				            case "mp4":
 				            	actionViewBookModalShow(event);
@@ -333,12 +334,6 @@ public class BooksController {
 		}
 	}
 	
-	// View Pdf	
-	public void viewBookPdf(ActionEvent event, String bookid, String booklocation) {
-		System.out.println("View Book Pdf: " + bookid + booklocation);
-	}
-	
-
 	
 	// View Unknown
 	public void viewBookUnknown(ActionEvent event, String bookid, String booklocation) {

@@ -1,14 +1,11 @@
 package application;
 
-import java.io.File;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -31,6 +28,8 @@ import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 public class MediaViewController {
+	Common common = new Common();
+	
 	private Stage stage;
 	
 	private BorderPane borderPaneModal;
@@ -57,8 +56,9 @@ public class MediaViewController {
 //		Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
 //		Stage stage=(Stage) lblHack.getScene().getWindow();
 		stage = new Stage();
+		stage.getIcons().add(common.StageIcon());
 		stage.setTitle("Now playing...");
-		stage.initStyle(StageStyle.UTILITY);
+		stage.initStyle(StageStyle.UNIFIED);
 		borderPaneModal = new BorderPane();
 		
 		VBox vboxLoading = new VBox();
@@ -200,9 +200,7 @@ public class MediaViewController {
 		hbox.prefWidthProperty().bind(vboxVideoActions.widthProperty().subtract(110));
 		vboxVideoActions.prefWidthProperty().bind(borderPaneModal.widthProperty());
 		
-		Scene scene = new Scene(borderPaneModal);
-		stage.setWidth(800);
-        stage.setHeight(600);
+		Scene scene = new Scene(borderPaneModal, 800, 600);
 		stage.setScene(scene);
 		stage.show();
 		
@@ -242,7 +240,7 @@ public class MediaViewController {
 	}
 	
 	private void closeWindowEvent(WindowEvent event) {
-        System.out.println("Window close request ...");
+//        System.out.println("Window close request ...");
         
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.getButtonTypes().remove(ButtonType.OK);
@@ -251,6 +249,8 @@ public class MediaViewController {
         alert.setTitle("Quit application");
         alert.setContentText(String.format("Close without saving?"));
         alert.initOwner(stage.getOwner());
+        Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+        alertStage.getIcons().add(common.StageIcon());
         Optional<ButtonType> res = alert.showAndWait();
 
         if(res.isPresent()) {
